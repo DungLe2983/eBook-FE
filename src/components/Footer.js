@@ -11,7 +11,7 @@ const Footer = () => {
                         </h2>
                         <p className='text-gray-500 dark:text-gray-400 font-medium text-sm leading-7 '>
                             A user-friendly books discovery platform that offers
-                            personalized recommendations, detailed movie
+                            personalized recommendations, detailed book
                             information, and the latest reviews. Explore new
                             releases, find hidden gems, and create watchlists
                             effortlessly with{' '}
