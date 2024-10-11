@@ -30,7 +30,7 @@ const Card = ({ image, name, author, price, trending, id }) => {
 
             <div className=' absolute top-2 '>
                 {trending && (
-                    <div className='py-1 px-4 bg-blue-400 text-white rounded-r-full backdrop-blur-3xl overflow-hidden'>
+                    <div className='py-1 px-6 bg-blue-400 text-white rounded-r-full backdrop-blur-3xl overflow-hidden'>
                         NEW
                     </div>
                 )}
