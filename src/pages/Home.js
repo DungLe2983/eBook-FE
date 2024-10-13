@@ -2,6 +2,9 @@ import React from 'react';
 import Banner from '../components/Banner';
 import SectionHeader from '../components/SectionHeader';
 import Card from '../components/Card';
+import BannerFiction from '../assets/BannerFiction.jpg';
+import BannerEnd from '../assets/BannerEnd.jpg';
+import BannerChildren from '../assets/BannerChildren.jpg';
 
 const Home = () => {
     const products = [
@@ -63,7 +66,7 @@ const Home = () => {
                 </div>
 
                 <img
-                    src='https://bookshop.ge/content/uploads/banner/banner_65cf618f58a33.jpg'
+                    src={BannerFiction}
                     alt='bannerFiction'
                     className='w-full rounded-lg items-center my-10'
                 />
@@ -81,7 +84,7 @@ const Home = () => {
                 </div>
 
                 <img
-                    src='https://bookshop.ge/content/uploads/banner/banner_65cf61a94e84b.jpg'
+                    src={BannerChildren}
                     alt='bannerChild'
                     className='w-full rounded-lg items-center my-10'
                 />
@@ -93,8 +96,8 @@ const Home = () => {
                 </div>
 
                 <img
-                    src='https://bookshop.ge/content/uploads/banner/banner_65cf61a00b255.jpg'
-                    alt='bannerChild'
+                    src={BannerEnd}
+                    alt='bannerEnd'
                     className='w-full rounded-lg items-center my-10'
                 />
             </div>

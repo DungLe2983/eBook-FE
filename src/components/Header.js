@@ -52,7 +52,7 @@ const Header = () => {
                         data-collapse-toggle='navbar-search'
                         aria-controls='navbar-search'
                         aria-expanded='false'
-                        className='md:order-3 text-black font-bold ml-0 md:ml-4 px-4 md:px-6 focus:outline-none  bg-blue-400 rounded-lg text-xs md:text-sm p-2.5 me-1'
+                        className='md:order-3 text-white hover:scale-105 transition-all font-bold ml-0 md:ml-4 px-4 md:px-6 focus:outline-none  bg-blue-400 rounded-lg text-xs md:text-sm p-2.5 me-1'
                     >
                         Login
                         <span className='sr-only'>Login</span>

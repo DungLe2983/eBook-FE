@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ image, name, author, price, trending, id }) => {
     return (
-        <div className=' relative overflow-hidden group hover:scale-105 transition-all shadow-lg '>
+        <Link
+            to={'/:explore/:id'}
+            className=' relative overflow-hidden group hover:scale-105 transition-all shadow-lg '
+        >
             <div className=' rounded overflow-hidden '>
                 <img
                     className='w-[280px] h-[22rem] object-cover cursor-pointer'
@@ -35,7 +38,7 @@ const Card = ({ image, name, author, price, trending, id }) => {
                     </div>
                 )}
             </div>
-        </div>
+        </Link>
     );
 };
 
