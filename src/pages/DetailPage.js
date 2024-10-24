@@ -51,10 +51,6 @@ const DetailPage = () => {
                                 <span className='font-semibold'>Language:</span>{' '}
                                 <span className='text-gray-100'>English</span>
                             </p>
-                            <p className='mb-2 '>Description:</p>
-                            <p className='my-2 md:max-w-xl text-xs md:text-base text-gray-100'>
-                                This is Description of the book.
-                            </p>
 
                             <p className='mb-2'>
                                 <span className='font-semibold'>CD/DVD:</span>
@@ -90,12 +86,33 @@ const DetailPage = () => {
                                 </p>
                             </div>
 
-                            <button className='bg-blue-400 rounded font-bold py-4 px-8 hover:scale-105 transition-all text-white mt-4 flex gap-2 text-sm'>
+                            <button className='bg-blue-400 rounded font-bold py-4 px-8 hover:scale-105 transition-all text-white mt-6 flex gap-2 text-sm'>
                                 <i className='ri-shopping-cart-2-fill '></i>
                                 <span>Add to Cart</span>
                             </button>
                         </>
                     </div>
+                </div>
+
+                <div>
+                    <p className=' mt-12 text-xl text-white font-semibold underline'>
+                        Description:
+                    </p>
+
+                    <p className='text-xs md:text-base text-gray-300 mt-5'>
+                        By her fortieth birthday, Alice Stern thought she's have
+                        figured it out, and have years left to spend with her
+                        father, Leonard. In reality, Alice is far from ready for
+                        the next big milestone, and Leonard is very sick. When
+                        she wakes up outside their old apartment on her
+                        birthday, she's greeted by a much younger Leonard,
+                        clutching a sixteenth birthday card for Alice, who
+                        rather than fearing middle age, is hurtling towards
+                        adulthood. Soon, Alice discovers how she got back to
+                        1996, and that she can keep on coming. But faced each
+                        time with different versions of her life, it's on her to
+                        not lose sight of the things she wants most . . .
+                    </p>
                 </div>
 
                 <div className='bg-slate-800 text-gray-400 max-w-7xl mx-auto mt-8 px-4 py-6  flex justify-end flex-col  gap-2 text-sm rounded-lg'>
