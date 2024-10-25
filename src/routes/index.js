@@ -10,6 +10,7 @@ import SignUp from '../pages/SignUp';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import Success from '../pages/Success';
+import NotFoundResult from '../components/NotFoundResult';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: 'success',
                 element: <Success />,
+            },
+            {
+                path: 'test',
+                element: <NotFoundResult/>
             },
         ],
     },

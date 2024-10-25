@@ -107,7 +107,7 @@ const Checkout = () => {
                 </a>
             </div>
             <div className='grid px-2 md:px-10 lg:grid-cols-2'>
-                <div className='mt-10 bg-gray-800 px-8 pt-8 lg:mt-0 rounded-l'>
+                <div className='mt-10 bg-gray-800 px-8 pt-8 lg:mt-0 rounded-l border-r border-gray-600 py-4'>
                     <p className='text-xl font-medium text-white'>
                         Thông tin chi tiết
                     </p>
