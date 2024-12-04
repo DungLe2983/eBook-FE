@@ -2,46 +2,46 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const cartItems = [
-      {
-          product_item_id: {
-              product_id: {
-                  image: [
-                      'https://bookshop.ge/content/uploads/products/9781405946124.jpg',
-                  ],
-                  name: 'This Time Tomorrow',
-              },
+    const cartItems = [
+        {
+            product_item_id: {
+                product_id: {
+                    image: [
+                        'https://bookshop.ge/content/uploads/products/9781405946124.jpg',
+                    ],
+                    name: 'This Time Tomorrow',
+                },
 
-              Author: {
-                  name: 'Penguin Books Ltd',
-              },
-              price: 150000,
-          },
-          item_quantity: 2,
-      },
-      {
-          product_item_id: {
-              product_id: {
-                  image: [
-                      'https://bookshop.ge/content/uploads/products/9781405946124.jpg',
-                  ],
-                  name: 'This Time Tomorrow',
-              },
-              Author: {
-                  name: 'Emma Straub',
-              },
-              price: 200000,
-          },
-          item_quantity: 1,
-      },
-  ];
+                Author: {
+                    name: 'Penguin Books Ltd',
+                },
+                price: 150000,
+            },
+            item_quantity: 2,
+        },
+        {
+            product_item_id: {
+                product_id: {
+                    image: [
+                        'https://bookshop.ge/content/uploads/products/9781405946124.jpg',
+                    ],
+                    name: 'This Time Tomorrow',
+                },
+                Author: {
+                    name: 'Emma Straub',
+                },
+                price: 200000,
+            },
+            item_quantity: 1,
+        },
+    ];
     return (
         <div className='max-w-7xl mx-auto my-24'>
             <h2 className='text-center font-bold text-3xl mt-8'>
                 Giỏ hàng của bạn
             </h2>
             <p className='text-center text-sm mt-2'>
-                Có <span className='font-semibold'>5 sản phẩm</span> trong giỏ
+                Có <span className='font-semibold'>3 sản phẩm</span> trong giỏ
                 hàng
             </p>
             <div className='table-container mt-16'>
@@ -69,7 +69,7 @@ const Cart = () => {
                                     <td className='p-4'>
                                         <div className='flex gap-2'>
                                             <img
-                                                className='w-32 h-32 object-cover'
+                                                className='w-32 h-32 object-contain'
                                                 src={
                                                     item.product_item_id
                                                         .product_id.image[0]

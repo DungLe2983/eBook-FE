@@ -11,6 +11,7 @@ import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import Success from '../pages/Success';
 import NotFoundResult from '../components/NotFoundResult';
+import Profile from '../pages/Profile';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -57,8 +58,12 @@ const router = createBrowserRouter([
                 element: <Success />,
             },
             {
+                path: 'profile',
+                element: <Profile />,
+            },
+            {
                 path: 'test',
-                element: <NotFoundResult/>
+                element: <NotFoundResult />,
             },
         ],
     },

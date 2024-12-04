@@ -40,36 +40,43 @@ const ExplorePage = () => {
             image: 'https://bookshop.ge/content/uploads/products/9781804940204.jpg',
         },
         {
+            id: 1,
+            name: 'Bad Samaritans: The Guilty Secrets of Rich Nations and the Threat to Global Prosperity',
+            author: 'Ha-Joon Chang',
+            price: '$23.00',
+            image: 'https://bookshop.ge/content/uploads/products/9781905211371.jpg',
+        },
+        {
             id: 2,
-            name: 'Fool Me Once',
-            author: 'Harlan Coben',
-            price: '$59.99',
-            image: 'https://bookshop.ge/content/uploads/products/9781804947203.jpg',
+            name: 'We are the Weather : Saving the Planet Begins at Breakfast',
+            author: 'Jonathan Safran Foer',
+            price: '$24.00',
+            image: 'https://bookshop.ge/content/uploads/products/9780241984918.jpg',
         },
         {
             id: 3,
-            name: 'This Time Tomorrow',
-            author: 'Emma Straub',
-            price: '$59.99',
-            image: 'https://bookshop.ge/content/uploads/products/9781405946124.jpg',
+            name: 'Work Remotely',
+            author: 'Anastasia Tohmé , Martin Worner',
+            price: '$22.99',
+            image: 'https://bookshop.ge/content/uploads/products/9780241482117.jpg',
         },
         {
             id: 4,
-            name: 'Our Crooked Hearts',
-            author: 'Melissa Albert',
-            price: '$29.99',
-            image: 'https://bookshop.ge/content/uploads/products/9780241592540.jpg',
+            name: 'How To Prevent The Next Pandemic',
+            author: 'Bill Gates',
+            price: '$25.00',
+            image: 'https://bookshop.ge/content/uploads/products/9781802060522.jpg',
         },
         {
             id: 5,
-            name: 'None of This is True',
-            author: 'Lisa Jewell',
-            price: '$39.99',
-            image: 'https://bookshop.ge/content/uploads/products/9781804940204.jpg',
+            name: 'Never Split the Difference: Negotiating as if Your Life Depended on It',
+            author: 'Chris Voss',
+            price: '$32.50',
+            image: 'https://bookshop.ge/content/uploads/products/9781847941497.jpg',
         },
     ];
 
-      const param = useParams();
+    const param = useParams();
     return (
         <div className='py-20'>
             <div className='container mx-auto'>

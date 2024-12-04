@@ -13,7 +13,7 @@ const Card = ({ image, name, author, price, trending, id }) => {
                     src={image}
                     alt={name}
                 />
-                <div className=' py-4'>
+                <div className=' w-full truncate py-4'>
                     <Link
                         href={`/${id}`}
                         className='font-bold text-lg mb-2 cursor-pointer hover:text-primary '
