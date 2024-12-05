@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
-import { useParams } from "react-router-dom";
 import { getAllBooks } from "../services/bookService";
 import Loader from "../components/Loader";
 
-const ExplorePage = () => {
+const Newest = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const param = useParams();
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -17,14 +15,11 @@ const ExplorePage = () => {
 
         const allBooks = await getAllBooks();
         console.log("allBooks", allBooks);
-        // Lọc sách theo thể loại (param.explore)
-        const filteredBooks = allBooks.data.filter((book) =>
-          book.categories.some(
-            (category) =>
-              category.name.toLowerCase() === param.explore.toLowerCase()
-          )
-        );
-        setBooks(filteredBooks);
+
+        // Đảo ngược danh sách và lấy 5 sản phẩm mới nhất
+        const reversedBooks = allBooks.data.reverse();
+
+        setBooks(reversedBooks); // Cập nhật danh sách
       } catch (err) {
         setError("Failed to load books. Please try again later.");
         console.error(err);
@@ -34,7 +29,7 @@ const ExplorePage = () => {
     };
 
     fetchBooks();
-  }, [param.explore]);
+  }, []);
 
   if (loading) {
     return (
@@ -56,7 +51,7 @@ const ExplorePage = () => {
     <div className='py-20'>
       <div className='container mx-auto'>
         <h3 className='capitalize text-white text-lg lg:text-2xl font-semibold my-6 px-6'>
-          Popular {param.explore}
+          Newest Books
         </h3>
 
         {books.length > 0 ? (
@@ -76,13 +71,11 @@ const ExplorePage = () => {
             ))}
           </div>
         ) : (
-          <p className='text-white text-lg px-6'>
-            No books found for the category "{param.explore}".
-          </p>
+          <p className='text-white text-lg px-6'>No books found.</p>
         )}
       </div>
     </div>
   );
 };
 
-export default ExplorePage;
+export default Newest;
