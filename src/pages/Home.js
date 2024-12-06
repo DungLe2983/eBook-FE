@@ -24,7 +24,7 @@ const Home = () => {
         setLoading(true);
         const response = await getAllBooks();
         const books = response.data;
-        console.log("books===", books);
+        // console.log("books===", books);
 
         setNewProducts(books.slice(-5));
 

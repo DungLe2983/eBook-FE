@@ -5,6 +5,7 @@ import { navigation } from "../constants/navigation";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   // Kiểm tra trạng thái đăng nhập khi component mount
   useEffect(() => {
@@ -21,6 +22,13 @@ const Header = () => {
     localStorage.removeItem("id");
     setIsLoggedIn(false);
     navigate("/");
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/search?query=${searchTerm}`);
+      setSearchTerm("");
+    }
   };
 
   return (
@@ -49,15 +57,23 @@ const Header = () => {
         </nav>
 
         <div className='ml-auto flex items-center gap-8'>
-          <form className='flex items-center gap-1'>
+          <form
+            className='flex items-center gap-1'
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
+          >
             <input
               type='text'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder='Search...'
               className='bg-transparent px-4 py-1 outline-none border-none hidden lg:block'
             />
-            <Link to={"/search"}>
+            <button onClick={handleSearch}>
               <i className='ri-search-line text-xl hover:text-white'></i>
-            </Link>
+            </button>
           </form>
           <Link to={"/cart"}>
             <i className='ri-shopping-cart-2-fill text-xl hover:text-white'></i>

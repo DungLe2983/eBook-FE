@@ -1,23 +1,23 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const NotFoundResult = () => {
+const NotFoundResult = ({ searchTerm }) => {
   return (
-      <div>
-          <div className='py-40 max-w-screen-xl  mx-auto px-4 text-center '>
-              <p className='font-bold text-xl'>
-                  Không tìm thấy sản phẩm phù hợp với từ khóa: "searchInput
-                  ”.
-              </p>
-              <p className='text-base text-gray-400 mt-4'>
-                  Vui lòng{' '}
-                  <a href='/' className='font-bold underline text-blue-400'>
-                      quay lại
-                  </a>{' '}
-                  để tiếp tục mua sắm bạn nhé!
-              </p>
-          </div>
+    <div>
+      <div className='py-40 max-w-screen-xl mx-auto px-4 text-center'>
+        <p className='font-bold text-xl'>
+          Không tìm thấy sản phẩm phù hợp với từ khóa: "{searchTerm}"
+        </p>
+        <p className='text-base text-gray-400 mt-4'>
+          Vui lòng{" "}
+          <Link to='/' className='font-bold underline text-blue-400'>
+            quay lại
+          </Link>{" "}
+          để tiếp tục bạn nhé!
+        </p>
       </div>
+    </div>
   );
-}
+};
 
-export default NotFoundResult
+export default NotFoundResult;

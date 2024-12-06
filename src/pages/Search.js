@@ -1,41 +1,78 @@
-import React from 'react';
-import Card from '../components/Card';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getProductsBySearchTerm } from "../services/bookService";
+import Loader from "../components/Loader";
+import Card from "../components/Card";
+import NotFoundResult from "../components/NotFoundResult";
 
 const Search = () => {
-    const data = [
-        {
-            id: 1,
-            name: 'Just So Stories',
-            author: 'Rudyard Kipling ',
-            price: '$23.99',
-            image: 'https://bookshop.ge/content/uploads/products/9781909621800.jpg',
-        },
-        {
-            id: 2,
-            name: 'Just So Stories',
-            author: 'Rudyard Kipling',
-            price: '$59.99',
-            image: 'https://bookshop.ge/content/uploads/products/9780141321622.jpg',
-        },
+  const location = useLocation();
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-        
-    ];
+  const query = new URLSearchParams(location.search).get("query");
+
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      setLoading(true);
+      try {
+        const response = await getProductsBySearchTerm(query);
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (query) {
+      fetchSearchResults();
+    }
+  }, [query]);
+
+  if (loading)
     return (
-        <div className='py-20'>
-            <div className='container mx-auto'>
-                <h3 className='capitalize text-gray-400 text-lg lg:text-2xl font-semibold my-6 px-6'>
-                    Search Result for:{' '}
-                    <span className='font-bold text-white'>just</span>
-                </h3>
-
-                <div className='grid grid-cols-[repeat(auto-fit,230px)] gap-4 justify-center lg:justify-start lg:px-6'>
-                    {data.map((data, index) => {
-                        return <Card key={data.id} {...data} />;
-                    })}
-                </div>
-            </div>
-        </div>
+      <div>
+        <Loader />
+      </div>
     );
+
+  return (
+    <div className='py-20'>
+      <div className='container mx-auto'>
+        {searchResults.length === 0 ? (
+          <div>
+            <NotFoundResult searchTerm={query} />
+          </div>
+        ) : (
+          <div>
+            <h3 className='capitalize text-gray-400 text-lg lg:text-2xl font-semibold my-10 px-6'>
+              Search Result for:{" "}
+              <span className='font-bold text-white'>"{query}"</span>
+            </h3>
+
+            <div className='grid grid-cols-[repeat(auto-fit,230px)] gap-4 justify-center lg:justify-start lg:px-6'>
+              {searchResults.map((book) => {
+                return (
+                  <Card
+                    key={book.id}
+                    id={book.id}
+                    name={book.title}
+                    author={book.authors?.[0]?.name || "Unknown Author"}
+                    price={book.price.toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                    image={book.coverImage}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Search;

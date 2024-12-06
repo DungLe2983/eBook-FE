@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ image, name, author, price, trending, id }) => {
   return (
     <Link
-      to={"/:explore/:id"}
+      to={`/explore/${id}`}
       className=' relative overflow-hidden group hover:scale-105 transition-all shadow-lg '
     >
       <div className=' rounded overflow-hidden '>

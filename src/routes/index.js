@@ -1,18 +1,18 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
-import Home from '../pages/Home';
-import ExplorePage from '../pages/ExplorePage';
-import DetailPage from '../pages/DetailPage';
-import Search from '../pages/Search';
-import About from '../pages/About';
-import Login from '../pages/Login';
-import SignUp from '../pages/SignUp';
-import Cart from '../pages/Cart';
-import Checkout from '../pages/Checkout';
-import Success from '../pages/Success';
-import NotFoundResult from '../components/NotFoundResult';
-import Profile from '../pages/Profile';
-import Newest from '../pages/Newest';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import Home from "../pages/Home";
+import ExplorePage from "../pages/ExplorePage";
+import DetailPage from "../pages/DetailPage";
+import Search from "../pages/Search";
+import About from "../pages/About";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
+import Success from "../pages/Success";
+import NotFoundResult from "../components/NotFoundResult";
+import Profile from "../pages/Profile";
+import Newest from "../pages/Newest";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <ExplorePage />,
       },
       {
-        path: ":explore/:id",
+        path: "/explore/:id",
         element: <DetailPage />,
       },
       {
