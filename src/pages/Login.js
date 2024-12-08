@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"; // Dùng để điều hư
 import { login } from "../services/loginService";
 import GoogleIcon from "../assets/Google.png";
 import toast from "react-hot-toast"; // Dùng để hiển thị thông báo (nếu cần)
+import { postCartID } from "../services/cartService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,8 +19,8 @@ const Login = () => {
 
     try {
       const response = await login(email, password);
+
       toast.success("Login successful!");
-      console.log("respone===", response);
 
       localStorage.setItem("token", response.data.accessToken);
       // console.log("token====", response.data.accessToken);

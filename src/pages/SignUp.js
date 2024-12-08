@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleIcon from "../assets/Google.png";
-import { register } from "../services/registerService"; // Import hàm register từ service
+import { register } from "../services/registerService";
+import { postCartID } from "../services/cartService";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +28,11 @@ const SignUp = () => {
       const res = await register(email, username, fullName, password); // Gọi hàm register
 
       if (res.status === 200) {
+        const temp = await postCartID(res.data.data);
+        const cartId = temp.data.id;
+        // console.log("cartId===", cartId);
+        localStorage.setItem("cartId", cartId);
+
         setUserCreated(true);
         setTimeout(() => {
           navigate("/login"); // Điều hướng đến trang login sau khi đăng ký thành công
@@ -174,18 +179,6 @@ const SignUp = () => {
               >
                 Register
               </button>
-              {/* <p className='text-center text-gray-500 text-sm'>
-                or login with provider
-              </p>
-              <button className='w-full flex items-center justify-center bg-gray-300 gap-2 font-semibold rounded-lg text-sm px-5 py-2 text-center text-black'>
-                <img
-                  src={GoogleIcon}
-                  alt={"googleIcon"}
-                  width={30}
-                  height={30}
-                />
-                Login with Google
-              </button> */}
               <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
                 Already have an account?{" "}
                 <Link

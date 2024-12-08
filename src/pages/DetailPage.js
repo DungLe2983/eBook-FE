@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom"; // Import useParams từ react-rou
 import { getBookById, getRecommendedBookById } from "../services/bookService"; // Import bookService
 import Loader from "../components/Loader";
 import Card from "../components/Card";
+import { createCartItem } from "../services/cartService";
+import toast from "react-hot-toast";
 
 const DetailPage = () => {
   const { id } = useParams();
+  const cartId = localStorage.getItem("cartId");
   const [product, setProduct] = useState(null);
   const [recommendBooks, setRecommendBooks] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -52,6 +55,22 @@ const DetailPage = () => {
     }
   };
 
+  const handleAddToCart = async () => {
+    if (!cartId) {
+      toast.error("Không tìm thấy Cart ID. Vui lòng khởi tạo giỏ hàng trước.");
+      return;
+    }
+    try {
+      const priceAtTime = product.price * quantity;
+      const cartItem = await createCartItem(cartId, id, quantity, priceAtTime);
+      console.log("CarItem", cartItem);
+      toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
+    } catch (error) {
+      console.error("Failed to add product to cart:", error);
+      toast.error("Thêm sản phẩm vào giỏ hàng thất bại!");
+    }
+  };
+
   return (
     <section className='mt-20 pb-12 lg:py-8 h-full flex flex-col items-center max-w-7xl mx-auto'>
       <div className='container mx-auto'>
@@ -73,7 +92,10 @@ const DetailPage = () => {
               {product.title}
             </h2>
             <p className='text-gray-400 mt-1'>
-              <span className='text-blue-400'>{product.author}</span> (Author)
+              <span className='text-blue-400'>
+                {product.authors.map((author) => author.name)}
+              </span>{" "}
+              (Author)
             </p>
             <div className='mt-4'>
               <p className='text-base font-semibold mb-2'>
@@ -86,7 +108,11 @@ const DetailPage = () => {
               </p>
               <p className='mb-2'>
                 <span className='font-semibold'>Category:</span>{" "}
-                <span className='text-gray-100'>{product.category}</span>
+                <span className='text-gray-100'>
+                  {product.categories
+                    .map((category) => category.name)
+                    .join(", ")}
+                </span>
               </p>
               <p className='mb-2'>
                 <span className='font-semibold'>Language:</span>{" "}
@@ -129,7 +155,10 @@ const DetailPage = () => {
                 sản phẩm
               </p>
             </div>
-            <button className='bg-blue-400 rounded font-bold py-4 px-8 hover:scale-105 transition-all text-white mt-6 flex gap-2 text-sm'>
+            <button
+              onClick={handleAddToCart}
+              className='bg-blue-400 rounded font-bold py-4 px-8 hover:scale-105 transition-all text-white mt-6 flex gap-2 text-sm'
+            >
               <i className='ri-shopping-cart-2-fill'></i>
               <span>Add to Cart</span>
             </button>

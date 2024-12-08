@@ -20,6 +20,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
+    localStorage.removeItem("cartId")
     setIsLoggedIn(false);
     navigate("/");
   };
