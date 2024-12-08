@@ -29,14 +29,12 @@ const SignUp = () => {
 
       if (res.status === 200) {
         const temp = await postCartID(res.data.data);
-        const cartId = temp.data.id;
-        // console.log("cartId===", cartId);
-        localStorage.setItem("cartId", cartId);
-
-        setUserCreated(true);
-        setTimeout(() => {
-          navigate("/login"); // Điều hướng đến trang login sau khi đăng ký thành công
-        }, 2000);
+        if (temp.status === 200) {
+          setUserCreated(true);
+          setTimeout(() => {
+            navigate("/login"); // Điều hướng đến trang login sau khi đăng ký thành công
+          }, 2000);
+        }
       }
     } catch (error) {
       setErrorMessage(error);

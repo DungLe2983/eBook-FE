@@ -62,6 +62,20 @@ const DetailPage = () => {
     }
     try {
       const priceAtTime = product.price * quantity;
+      // const ExistCartItem = await getCartItemsByCartIdBookId(cartId, id)
+      // if (ExistCartItem) {
+      //   const newQuantity = ExistCartItem.quantity + quantity;
+      //  const newPriceAtTime = ExitCartItem.priceAtTime + priceAtTime;
+      // const response = await updateCartItem(ExistCartItem.id, newQuantity, newPriceAtTime)
+      // if (response.status === 200) {
+      //   toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
+      // }
+      // } else {
+      // const cartItem = await createCartItem(cartId, id, quantity, priceAtTime);
+      //    console.log("CarItem", cartItem);
+      // toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
+      // }
+
       const cartItem = await createCartItem(cartId, id, quantity, priceAtTime);
       console.log("CarItem", cartItem);
       toast.success("Thêm sản phẩm vào giỏ hàng thành công!");

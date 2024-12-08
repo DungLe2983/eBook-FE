@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Dùng để điều hướng sau khi login
 import { login } from "../services/loginService";
-import GoogleIcon from "../assets/Google.png";
 import toast from "react-hot-toast"; // Dùng để hiển thị thông báo (nếu cần)
-import { postCartID } from "../services/cartService";
+import { getCartIdByUserId } from "../services/cartService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +27,10 @@ const Login = () => {
       localStorage.setItem("id", response.data.user.id);
       // console.log("id====", response.data.user.id);
 
+      const cartId = await getCartIdByUserId(response.data.user.id);
+      console.log("cartId===", cartId.data.id);
+      localStorage.setItem("cartId", cartId.data.id);
+
       navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
@@ -51,7 +54,7 @@ const Login = () => {
             </h1>
             {loginFalse && (
               <div className='text-sm font-light text-red-700'>
-                Email or password incorrect
+                Username or password incorrect
               </div>
             )}
             <form className='space-y-4 md:space-y-6' onSubmit={handleLogin}>

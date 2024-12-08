@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteCartItem, getCartItemsByCartId } from "../services/cartService";
 import { getBookById } from "../services/bookService";
 import toast from "react-hot-toast";
@@ -8,6 +8,11 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const cartId = localStorage.getItem("cartId");
+  const userId = localStorage.getItem("id");
+  const navigate = useNavigate();
+  if (!userId) {
+    navigate("/login");
+  }
 
   useEffect(() => {
     const fetchCartItemsWithBookDetails = async () => {

@@ -50,3 +50,15 @@ export const deleteCartItem = async (cartItemId) => {
     throw error;
   }
 };
+
+export const getCartIdByUserId = async (userId) => {
+  try {
+    const response = await axios.get(
+      `https://localhost:44392/api/Cart/user/${userId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch cart ID:", error);
+    throw error;
+  }
+}

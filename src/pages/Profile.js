@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getUserById, updateUserById } from "../services/profileService";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -9,6 +10,11 @@ const Profile = () => {
   const [error, setError] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const userId = localStorage.getItem("id");
+  const navigate = useNavigate();
+  if (!userId) {
+    navigate("/login");
+  }
 
   useEffect(() => {
     const fetchUserData = async () => {
