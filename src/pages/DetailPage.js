@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom"; // Import useParams từ react-rou
 import { getBookById, getRecommendedBookById } from "../services/bookService"; // Import bookService
 import Loader from "../components/Loader";
 import Card from "../components/Card";
-import { createCartItem } from "../services/cartService";
+import {
+  createCartItem,
+  getCartItemsByCartIdBookId,
+  updateCartItem,
+} from "../services/cartService";
 import toast from "react-hot-toast";
 
 const DetailPage = () => {
@@ -60,25 +64,46 @@ const DetailPage = () => {
       toast.error("Không tìm thấy Cart ID. Vui lòng khởi tạo giỏ hàng trước.");
       return;
     }
-    try {
-      const priceAtTime = product.price * quantity;
-      // const ExistCartItem = await getCartItemsByCartIdBookId(cartId, id)
-      // if (ExistCartItem) {
-      //   const newQuantity = ExistCartItem.quantity + quantity;
-      //  const newPriceAtTime = ExitCartItem.priceAtTime + priceAtTime;
-      // const response = await updateCartItem(ExistCartItem.id, newQuantity, newPriceAtTime)
-      // if (response.status === 200) {
-      //   toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
-      // }
-      // } else {
-      // const cartItem = await createCartItem(cartId, id, quantity, priceAtTime);
-      //    console.log("CarItem", cartItem);
-      // toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
-      // }
 
-      const cartItem = await createCartItem(cartId, id, quantity, priceAtTime);
-      console.log("CarItem", cartItem);
-      toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
+    try {
+      const bookId = product.id;
+      const existingCartItem = await getCartItemsByCartIdBookId(cartId, bookId);
+      console.log("Existing cart item", existingCartItem);
+
+      if (existingCartItem.data !== null) {
+        // Update existing cart item
+        const newQuantity = existingCartItem.data.quantity + quantity;
+        const newPriceAtTime = product.price * newQuantity;
+
+        const response = await updateCartItem(
+          existingCartItem.data.id,
+          quantity,
+          newPriceAtTime
+        );
+
+        if (response.status === 200) {
+          toast.success("Cập nhật sản phẩm vào giỏ hàng thành công!");
+        } else {
+          toast.error("Cập nhật sản phẩm thất bại!");
+        }
+      }
+      if (existingCartItem.data === null) {
+        // Add new cart item
+        const priceAtTime = product.price * quantity;
+        const cartItem = await createCartItem(
+          cartId,
+          bookId,
+          quantity,
+          priceAtTime
+        );
+
+        if (cartItem) {
+          console.log("CartItem===", cartItem);
+          toast.success("Thêm sản phẩm mới vào giỏ hàng thành công!");
+        } else {
+          toast.error("Thêm sản phẩm thất bại!");
+        }
+      }
     } catch (error) {
       console.error("Failed to add product to cart:", error);
       toast.error("Thêm sản phẩm vào giỏ hàng thất bại!");

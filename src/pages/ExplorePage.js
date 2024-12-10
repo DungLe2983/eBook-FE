@@ -16,7 +16,7 @@ const ExplorePage = () => {
         setLoading(true);
 
         const allBooks = await getAllBooks();
-        console.log("allBooks", allBooks);
+        // console.log("allBooks", allBooks);
         // Lọc sách theo thể loại (param.explore)
         const filteredBooks = allBooks.data.filter((book) =>
           book.categories.some(
