@@ -24,32 +24,46 @@ const Home = () => {
         setLoading(true);
         const response = await getAllBooks();
         const books = response.data;
-        // console.log("books===", books);
 
         setNewProducts(books.slice(-5));
 
         setFiction(
-          books.filter((book) =>
-            book.categories.some((cat) => cat.name.toLowerCase() === "fiction")
-          )
+          books
+            .filter((book) =>
+              book.categories.some(
+                (cat) => cat.name.toLowerCase() === "fiction"
+              )
+            )
+            .slice(0, 5)
         );
         setScience(
-          books.filter((book) =>
-            book.categories.some((cat) => cat.name.toLowerCase() === "science")
-          )
+          books
+            .filter((book) =>
+              book.categories.some(
+                (cat) => cat.name.toLowerCase() === "science"
+              )
+            )
+            .slice(0, 5)
         );
 
         setNonFiction(
-          books.filter((book) =>
-            book.categories.some(
-              (cat) => cat.name.toLowerCase() === "non-fiction"
+          books
+            .filter((book) =>
+              book.categories.some(
+                (cat) => cat.name.toLowerCase() === "non-fiction"
+              )
             )
-          )
+            .slice(0, 5)
         );
+
         setChildren(
-          books.filter((book) =>
-            book.categories.some((cat) => cat.name.toLowerCase() === "children")
-          )
+          books
+            .filter((book) =>
+              book.categories.some(
+                (cat) => cat.name.toLowerCase() === "children"
+              )
+            )
+            .slice(0, 5)
         );
       } catch (err) {
         setError("Failed to load books. Please try again later.");

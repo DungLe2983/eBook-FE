@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Import useParams từ react-router-dom
+import { useNavigate, useParams } from "react-router-dom"; // Import useParams từ react-router-dom
 import { getBookById, getRecommendedBookById } from "../services/bookService"; // Import bookService
 import Loader from "../components/Loader";
 import Card from "../components/Card";
@@ -17,6 +17,7 @@ const DetailPage = () => {
   const [recommendBooks, setRecommendBooks] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const fetchProduct = async () => {
     try {
@@ -60,9 +61,14 @@ const DetailPage = () => {
   };
 
   const handleAddToCart = async () => {
+    const userId = localStorage.getItem("id");
+    if (!userId) {
+      navigate("/login");
+    }
     if (!cartId) {
-      toast.error("Không tìm thấy Cart ID. Vui lòng khởi tạo giỏ hàng trước.");
-      return;
+      toast.error(
+        "Không tìm thấy giỏ hàng, vui lòng đăng nhập để thêm sản phẩm!"
+      );
     }
 
     try {
@@ -106,7 +112,6 @@ const DetailPage = () => {
       }
     } catch (error) {
       console.error("Failed to add product to cart:", error);
-      toast.error("Thêm sản phẩm vào giỏ hàng thất bại!");
     }
   };
 
