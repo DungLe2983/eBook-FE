@@ -41,3 +41,17 @@ export const getProductsBySearchTerm = async (searchTerm) => {
     console.error("Error fetching products by search:", error);
   }
 };
+
+export const updateBookStockQuantity = async (id, quantity) => {
+  try {
+    const response = await axios.patch(
+      `https://localhost:44392/api/Book/${id}/stock/subtract`,
+      {
+        quantityToSubtract: quantity,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log("Failed to update stock quantity");
+  }
+};
