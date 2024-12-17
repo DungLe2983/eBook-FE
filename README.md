@@ -14,12 +14,6 @@ An eCommerce platform specializing in books, featuring personalized book recomme
 - Manage profile.
 
 ## Requirement
-- Runtime environment:
-    - Node.js 20.10.0+.
-    - MongoDB for database storage.
-    - Firebase Storage for file storage.
-    - Vercel for hosting.
-
 - Development environment:
     - .NET 8.0+
     - React.js 18.2.0+ for frontend development.
@@ -44,7 +38,7 @@ To install and run the project locally, follow these steps:
 ![Cart](./demo_ui/cart.png)
 ![Checkout](./demo_ui/checkout.png)
 ![Search](./demo_ui/search.png)
-![Profile](./demo_ui/Profile.png)
+
 
 ## Authors
 
